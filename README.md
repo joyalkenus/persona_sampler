@@ -1,6 +1,9 @@
-# Reddit Post Preference Predictor
+# User Persona Preference Predictor
 
-This project uses an AI model to predict preferences for Reddit posts based on a specified persona. It processes a CSV file containing Reddit post titles and generates a new CSV file with predicted preferences.
+This project uses an AI model to predict preferences for User posts in social media based on a specified persona. It processes a CSV file containing Reddit post titles and generates a new CSV file with predicted preferences.
+
+In this example, the persona is an 18-year-old CS student studying in America, with interests in philosophy, 
+computer science, and various sports. and used reddit posts as examples.
 
 ## Setup
 
