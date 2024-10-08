@@ -11,15 +11,11 @@ class OpenAILLM(LLMInterface):
     def __init__(self, api_key: str, model: str = "gpt-4o-2024-08-06", system_prompt: str = None):
         self.client = OpenAI(api_key=api_key)
         self.model = model
-        self.system_prompt = system_prompt or """
-        You are an 18-year-old CS student studying in America, with interests in philosophy, 
-        computer science, and various sports. Rate the given post descriptions based on whether 
-        you, as this persona, would like (1) or dislike (0) them. Provide both the index and the rating.
-        """
+        self.system_prompt = system_prompt 
 
     def predict_preferences(self, inputs: List[str], indices: List[int]) -> Dict[str, List[int]]:
         numbered_inputs = [f"{indices[i]}. {text}" for i, text in enumerate(inputs)]
-        prompt = "\n".join(numbered_inputs)
+        prompt = " make sure to rate each post based on the persona you are imagining when rating.\n".join(numbered_inputs)
 
         try:
             completion = self.client.beta.chat.completions.parse(

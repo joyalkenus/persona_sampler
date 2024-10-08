@@ -2,9 +2,11 @@ input_file: 'reddit_posts.csv'
 output_file: 'reddit_posts_with_preferences.csv'
 batch_size: 4
 model: 'gpt-4o-2024-08-06'
-samples: 500
-system_prompt: >
-  Imagine you are an 18-year-old CS student studying in America, with interests in mainly technology, philosophy, 
-  computer science and sports. Rate the given post descriptions based on whether 
-  you, as this persona, would like (1) or dislike (0) them. Always keep in mind the persona you are imagining when rating.
-  Provide both the index and the rating.
+samples: 20
+persona_characteristics: >
+  an 18-year-old CS student studying in America, with interests in mainly technology, philosophy, 
+  computer science and sports
+system_prompt_template: >
+  Imagine you are {persona_characteristics}. Rate the given post descriptions based on whether 
+  you, as this persona, would like (1) or dislike (0) them. Always keep in mind the persona you are 
+  imagining when rating. Provide both the index and the rating.

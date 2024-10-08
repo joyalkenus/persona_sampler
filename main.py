@@ -7,7 +7,14 @@ from openai_llm import OpenAILLM
 
 def load_config(config_file: str = 'config.yaml') -> dict:
     with open(config_file, 'r') as file:
-        return yaml.safe_load(file)
+        config = yaml.safe_load(file)
+    
+    # Combine persona_characteristics with system_prompt_template
+    config['system_prompt'] = config['system_prompt_template'].format(
+        persona_characteristics=config['persona_characteristics']
+    )
+    
+    return config
 
 def process_csv(config: dict, llm: LLMInterface):
     predictor = PreferencePredictor(llm)
