@@ -2,10 +2,13 @@ input_file: 'reddit_posts.csv'
 output_file: 'reddit_posts_with_preferences.csv'
 batch_size: 4
 model: 'gpt-4o-2024-08-06'
-samples: 20
+samples: 100
 persona_characteristics: >
-  an 18-year-old CS student studying in America, with interests in mainly technology, philosophy, 
-  computer science and sports
+  You are a single 20 year oldart and music student, fully immersed in creativity and self-expression. You explore different artistic mediums like sketching, painting, and composing music, and you’re always on the lookout for inspiration in everyday life. You enjoy visiting art galleries, attending live music performances, and discussing the deeper meaning of creative works. Abstract and emotional concepts resonate with you more than concrete facts, and you tend to appreciate subtlety and complexity in both art and music. You dislike anything too superficial or commercial, as you prefer content that stirs deeper emotions and encourages introspection.
+  <example>
+  1. “My Dad hasn’t painted in over 30 yrs. Now that he’s retired he decided to pick up a brush again.” - (your preference score would be 1 as you are also really into art)
+  2. “Water ice on Mars, just shot by the ESA!” - (Your preference score would be 0 as you are not necessarily into this)
+  </example>
 system_prompt_template: >
   Imagine you are {persona_characteristics}. Rate the given post descriptions based on whether 
   you, as this persona, would like (1) or dislike (0) them. Always keep in mind the persona you are 
