@@ -23,9 +23,9 @@ def process_csv(config: dict, llm: LLMInterface):
     # Load your dataset
     df = pd.read_csv(config['input_file'])
 
-    # Check if 'Titles' column exists
-    if 'Titles' not in df.columns:
-        raise KeyError("The input CSV file must contain a 'Titles' column.")
+    # Check if 'title' column exists
+    if 'title' not in df.columns:
+        raise KeyError("The input CSV file must contain a 'title' column.")
 
     # Add an index column if not present
     if 'Index' not in df.columns:
@@ -49,7 +49,7 @@ def process_csv(config: dict, llm: LLMInterface):
                 print(f"Error processing batch (attempt {attempt + 1}/{max_retries}): {e}")
                 if attempt < max_retries - 1:
                     print("Retrying...")
-                    time.sleep(5)  # Wait for 5 seconds before retrying
+                    time.sleep(2)  
                 else:
                     print(f"Failed to process batch after {max_retries} attempts. Skipping...")
                     # Append the original batch without predictions
@@ -68,5 +68,5 @@ if __name__ == "__main__":
     
     config = load_config()
     
-    llm = OpenAILLM(api_key, model=config['model'], system_prompt=config['system_prompt'])
+    llm = OpenAILLM(api_key, model=config['model'], system_prompt=config['system_prompt'], prompt=config['prompt'])
     process_csv(config, llm)

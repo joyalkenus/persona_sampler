@@ -22,12 +22,12 @@ class PreferencePredictor:
         self.llm = llm
 
     def predict_batch(self, data: pd.DataFrame) -> pd.DataFrame:
-        if 'Titles' not in data.columns:
-            raise KeyError("The input DataFrame must contain a 'Titles' column.")
+        if 'title' not in data.columns:
+            raise KeyError("The input DataFrame must contain a 'title' column.")
         if 'Index' not in data.columns:
             raise KeyError("The input DataFrame must contain an 'Index' column.")
 
-        inputs = data['Titles'].tolist()
+        inputs = data['title'].tolist()
         indices = data['Index'].tolist()
         predictions = self.llm.predict_preferences(inputs, indices)
         
